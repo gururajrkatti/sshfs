@@ -1,24 +1,38 @@
 sudo: required
 dist: xenial
-arch:
-    - amd64
-    - ppc64le
-
 language:
-    - c
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - valgrind
-    - clang
-    - gcc
-    - gcc-6
-    - python-docutils
-    - python3-pip
-    - python3-setuptools
-    - ninja-build
+    - c   
+matrix:
+ include:
+  - arch: amd64
+    addons:
+        apt:
+         sources:
+         - ubuntu-toolchain-r-test
+         packages:
+          - valgrind
+          - clang
+          - gcc
+          - gcc-6
+          - python-docutils
+          - python3-pip
+          - python3-setuptools
+          - ninja-build   
+  - arch: ppc64le
+    addons:
+        apt:
+         sources:
+         - ubuntu-toolchain-r-test
+         packages:
+          - valgrind
+          - clang
+          - gcc
+          - gcc-6
+          - python-docutils
+          - python3-pip
+          - python3-setuptools
+          - ninja-build
+          - libglib2.0-dev          
 install: test/travis-install.sh
 script: test/travis-build.sh
 
